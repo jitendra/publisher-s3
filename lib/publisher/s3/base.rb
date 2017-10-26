@@ -4,8 +4,7 @@ module Publisher
       
       def connect
         return if AWS::S3::Base.connected?
-        AWS::S3::Base.establish_connection!(:access_key_id => configuration.access_key, :secret_access_key => configuration.access_secret)
-        AWS::S3::DEFAULT_HOST.replace configuration.default_host if configuration.default_host
+        AWS::S3::Base.establish_connection!(:access_key_id => configuration.access_key, :secret_access_key => configuration.access_secret, :server => configuration.default_host)
       end
       
       def configuration
